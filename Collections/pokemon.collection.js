@@ -1,12 +1,12 @@
-const Pokemon = require("../module/pokemon")
+const Pokemon = require("../model/pokemon")
 
 const addPokemon=async(req,res)=>{
    try {
     const {pokemon_id} = req.body
-    const pokemon = await Pokeomn.findOne({pokemon_id})
+    const pokemon = await Pokemon.findOne({pokemon_id})
     if(pokemon) return res.status(401).json({message : "Already exists"})
 
-    const newPokemon = new Pokeomn({...req.body})
+    const newPokemon = new Pokemon({...req.body})
     newPokemon.save()
     res.status(200).json(newPokemon)
    } catch (error) {
